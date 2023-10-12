@@ -1,7 +1,5 @@
-import { Children } from "react";
-
-function Footer() {
-  return <Footer>{Children}</Footer>;
+function Footer({ children }) {
+  return <footer>{children}</footer>;
 }
 
 export default Footer;
