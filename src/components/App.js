@@ -18,7 +18,10 @@ const initialState = {
   answer: null,
   points: 0,
   highscore: 0,
+  secondsRemaining: null,
 };
+
+const SECS_PER_QUESTION = 30;
 
 const reducer = function (state, action) {
   switch (action.type) {
@@ -39,6 +42,7 @@ const reducer = function (state, action) {
       return {
         ...state,
         status: "Active",
+        secondsRemaining: state.questions.length * SECS_PER_QUESTION,
       };
 
     case "newAnswer":
@@ -59,10 +63,10 @@ const reducer = function (state, action) {
         answer: null,
       };
 
-    case "finish":
+    case "Finished":
       return {
         ...state,
-        status: "Finish",
+        status: "Finished",
         highscore:
           state.points >= state.highscore ? state.points : state.highscore,
       };
@@ -74,14 +78,23 @@ const reducer = function (state, action) {
         status: "Ready",
       };
 
+    case "tick":
+      return {
+        ...state,
+        secondsRemaining: state.secondsRemaining - 1,
+        status: state.secondsRemaining === 0 ? "Finished" : state.status,
+      };
+
     default:
       throw new Error("Unknown action");
   }
 };
 
 export default function App() {
-  const [{ questions, status, index, answer, points, highscore }, dispatch] =
-    useReducer(reducer, initialState);
+  const [
+    { questions, status, index, answer, points, highscore, secondsRemaining },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
   const numQuestions = questions.length;
   const maxPossiblePoints = questions.reduce(
@@ -120,7 +133,7 @@ export default function App() {
               dispatch={dispatch}
             />
             <Footer>
-              <Timer />
+              <Timer dispatch={dispatch} secondsRemaining={secondsRemaining} />
 
               <NextQuestion
                 answer={answer}
@@ -132,7 +145,7 @@ export default function App() {
           </>
         )}
 
-        {status === "Finish" && (
+        {status === "Finished" && (
           <FinishScreen
             points={points}
             maxPossiblePoints={maxPossiblePoints}
