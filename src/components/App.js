@@ -63,7 +63,7 @@ const reducer = function (state, action) {
         answer: null,
       };
 
-    case "Finished":
+    case "finished":
       return {
         ...state,
         status: "Finished",
