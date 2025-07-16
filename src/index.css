@@ -257,3 +257,100 @@ progress {
   font-size: inherit;
   padding: 0.8rem;
 }
+
+/* ===== Responsive Styles for Mobile Devices ===== */
+@media (max-width: 600px) {
+  html {
+    font-size: 55%; /* Slightly smaller scaling */
+  }
+
+  body {
+    padding: 2rem;
+  }
+
+  .app-header {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.6rem;
+    text-align: center;
+  }
+
+  .main {
+    width: 100%;
+  }
+
+  img {
+    width: 10rem;
+  }
+
+  h1 {
+    font-size: 3.6rem;
+  }
+
+  h2 {
+    font-size: 2.8rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+    margin-bottom: 2.4rem;
+  }
+
+  h4 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .btn,
+  .timer {
+    font-size: 1.6rem;
+    padding: 1rem 2rem;
+  }
+
+  .btn-ui,
+  .timer {
+    float: none;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .options {
+    gap: 1rem;
+  }
+
+  .btn-option {
+    font-size: 1.6rem;
+    padding: 1rem 1.6rem;
+  }
+
+  .progress {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  progress {
+    height: 10px;
+  }
+
+  .result {
+    font-size: 1.8rem;
+    padding: 1.6rem 0;
+  }
+
+  .highscore {
+    font-size: 1.6rem;
+  }
+
+  .loader-container {
+    font-size: 1.2rem;
+  }
+
+  .counter {
+    font-size: 1.6rem;
+    margin: 3rem;
+  }
+}
